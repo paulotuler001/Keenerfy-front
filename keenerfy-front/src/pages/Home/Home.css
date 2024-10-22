@@ -1,0 +1,17 @@
+#list-cards{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
+    gap: 16px; /* Espaçamento entre os cards */
+    padding: 20px;
+}
+
+@media (max-width: 1800px) {
+    #list-cards {
+        grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+    }
+}
+@media (max-width: 1300px) {
+    #list-cards {
+        grid-template-columns: repeat(2, 1fr); /* 3 colunas */
+    }
+}
