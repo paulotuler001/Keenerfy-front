@@ -1,8 +1,8 @@
-const Button = () => {
+import './Button.css'
+
+const Button = (props) => {
     return (
-        <div>
-            
-        </div>
+            <button >{props.button}</button>
     )
 }
 
