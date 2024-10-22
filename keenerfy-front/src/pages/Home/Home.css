@@ -1,17 +1,29 @@
 #list-cards{
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colunas */
-    gap: 16px; /* Espaçamento entre os cards */
+    grid-template-columns: repeat(4, 400px); /* 4 colunas */
     padding: 20px;
+    gap:20px;
+    justify-content: center;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 1600px) {
     #list-cards {
-        grid-template-columns: repeat(3, 1fr); /* 3 colunas */
+        grid-template-columns: repeat(3, 400px); /* 3 colunas */
     }
 }
-@media (max-width: 1300px) {
+@media (max-width: 1200px) {
     #list-cards {
-        grid-template-columns: repeat(2, 1fr); /* 3 colunas */
+        grid-template-columns: repeat(2, 400px); /* 3 colunas */
     }
+}
+
+#container-list-card{
+    display: flex;
+    flex-direction: column;
+}
+
+#container-list-card div{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
 }

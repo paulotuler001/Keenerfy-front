@@ -6,7 +6,7 @@ function Header(){
             <div className='container-header'>
                 <header>
                     <div id="img-container">
-                        <img src="/images/keener.fy.png" alt="icon from header of the page"/>
+                        <img src="/images/keener.fy.svg" alt="icon from header of the page"/>
                     </div>
                     <div id="options-container">
                         <ButtonHeader name="HOME"/>

@@ -1,0 +1,18 @@
+.container-search-field input{
+    width: 400px;
+    height: 20px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    padding: 10px;
+    border: none;
+    background-color: #D1C6C6;
+    /* position: relative; */
+}
+
+.container-search-field i{
+    background-color: #D1C6C6;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    padding-top: 10px;
+    padding-right: 14px;
+}
