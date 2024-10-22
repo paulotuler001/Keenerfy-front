@@ -1,0 +1,44 @@
+.container-register form {
+    background-color: white;
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+    justify-content: space-evenly; /* Evenly space out items vertically */
+    padding: 20px; /* Add padding for better appearance */
+    margin: 0px 10px 10px 10px;
+}
+
+.container-register {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container-register img {
+    width: 50%;
+}
+
+body {
+    display: flex;
+    justify-content: center; 
+}
+
+h3{
+    text-decoration: underline;
+    margin-top:40px;
+    color:#055973;
+}
+
+.sub-container {
+    display: flex;
+}
+
+
+#sub-container-button{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
