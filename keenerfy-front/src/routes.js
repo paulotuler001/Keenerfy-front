@@ -6,6 +6,7 @@ import ProductDetails from "./pages/ProductDetails"
 import PurchaseOrder from "./pages/PurchaseOrder"
 import Sales from "./pages/Sales"
 import Stock from "./pages/Stock"
+import Home from "./pages/Home"
 
 function AppRoutes(){
     return (    
@@ -13,6 +14,7 @@ function AppRoutes(){
         <Routes>
             <Route path="/login" element={<Login/>}></Route>
             <Route path="/register" element={<Register/>}></Route>
+            <Route path="/home" element={<Home/>}></Route>
             <Route path="/new-product" element={<NewProduct/>}></Route>
             <Route path="/product-details" element={<ProductDetails/>}></Route>
             <Route path="/purchase-order" element={<PurchaseOrder/>}></Route>
