@@ -29,6 +29,12 @@
     gap:2%;
 }
 
+@media (max-width: 1000px) {
+    #options-container {
+        width: 10px;
+    }
+}
+
 #user-container {
     flex: 1;     
     height: 100%;
