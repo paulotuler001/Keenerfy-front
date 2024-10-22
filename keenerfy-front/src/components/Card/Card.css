@@ -1,0 +1,31 @@
+.container-card {
+    width: 350px;
+    height: 45vh;
+    margin: 50px;
+    padding-top:25px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.808);
+    justify-content: center;
+    align-items: center;
+}
+
+.container-card img {
+    width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+article {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+}
+
+.container-card h4{
+    display: flex;
+    align-self: end;
+    color: #055973;
+}
+
+
