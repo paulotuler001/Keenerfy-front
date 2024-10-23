@@ -8,7 +8,7 @@ const ListTable = ({columns, data, title}) => {
     <div className="container-list-table">
       <form className="form-list-table">
         <h2>{title}</h2>
-        <hr class="custom-hr" />
+        <hr className="custom-hr" />
         <div className="sub-container-list-table">
         </div>
         <div className="grid-container">

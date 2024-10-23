@@ -1,13 +1,13 @@
 import React, { createContext, useEffect, useState } from "react";
 import api from "../api";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Context = createContext();
 
 function AuthProvider({ children }){
 
     const [authenticated, setAuthenticated] = useState(false)
-    const [loading, setLoading] = useState(true)
+    // const [, setLoading] = useState(true)
     // const nav = useNavigate()
 
     useEffect(() =>{
@@ -20,7 +20,7 @@ function AuthProvider({ children }){
             setAuthenticated(false);
         }
         
-        setLoading(false)
+        // setLoading(false)
     }, [])
 
 
@@ -40,7 +40,8 @@ function AuthProvider({ children }){
             // })
 
         const { token } = data
-
+        console.log(token);
+        
         localStorage.setItem('token', JSON.stringify(token))
         api.defaults.headers.Authorization = token
         setAuthenticated(true)
@@ -55,6 +56,7 @@ function AuthProvider({ children }){
         setAuthenticated(false)
         localStorage.removeItem('token')
         api.defaults.headers.Authorization = undefined
+        setAuthenticated(false)
     }
 
     return (

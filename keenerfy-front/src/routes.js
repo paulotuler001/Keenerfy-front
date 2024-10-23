@@ -13,7 +13,7 @@ import { Context } from "./Context/AuthContext";
 import { useContext } from "react";
 
 function AppRoutes() {
-  let authenticated = useContext(Context);
+  let {authenticated} = useContext(Context);
   // authenticated = true
   console.log(authenticated + "aaa");
   return (
@@ -43,6 +43,7 @@ function AppRoutes() {
             <Route path="/stock" element={<Stock />} />
             <Route path="/my-purchases" element={<MyPurchases />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="*" element={<Navigate to="/home" replace />} />
           </>
         ) : (
           <Route path="*" element={<Navigate to="/login" replace />} />

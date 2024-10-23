@@ -11,7 +11,7 @@ const NewProduct = () =>{
             </div>
             <form className="form-new-product">
                 <h1>NEW PRODUCT</h1>
-                <hr class="custom-hr"/>
+                <hr className="custom-hr"/>
                 <div id="first-block-text-field">
                         <div className="sub-container-text-field">
                             <TextField label="NAME"/>    

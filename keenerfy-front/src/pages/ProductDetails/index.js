@@ -10,7 +10,7 @@ const ProductDetails = () =>{
             </div>
             <form className="form-product-detail">
                 <h1>PRODUCT NAME</h1>
-                <hr class="custom-hr"/>
+                <hr className="custom-hr"/>
                 <div id="product-detail-block">
                     <div id="img-detail-block">
                         <img src="/images/kenner-shrek.png" alt="shrek's best flip flop"/>

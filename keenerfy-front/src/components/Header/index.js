@@ -49,10 +49,10 @@ function Header(props) {
         </div>
         <div id="user-container">
           <div>
-            <i class="fas fa-user"></i>
+            <i className="fas fa-user"></i>
             <p>{props.user ?? "disconnected"}</p>
           </div>
-            <button id="sign-out-btn" onClick={handleLogout}><i class="fas fa-sign-out"></i></button>
+            <button id="sign-out-btn" onClick={handleLogout}><i className="fas fa-sign-out"></i></button>
         </div>
       </header>
     </div>

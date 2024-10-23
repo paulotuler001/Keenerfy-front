@@ -4,7 +4,7 @@ const SearchField = () =>{
     return (
         <div className='container-search-field'>
             <input placeholder='Search...'/>
-                <i class="fas fa-search"></i>
+                <i className="fas fa-search"></i>
         </div>
     )
 }
