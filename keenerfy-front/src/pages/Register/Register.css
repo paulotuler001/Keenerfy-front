@@ -8,6 +8,7 @@
     justify-content: space-evenly; /* Evenly space out items vertically */
     padding: 20px; /* Add padding for better appearance */
     margin: 0px 10px 10px 10px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
 }
 
 .container-register {
