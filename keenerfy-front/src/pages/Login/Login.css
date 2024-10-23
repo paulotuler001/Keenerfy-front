@@ -7,10 +7,22 @@
     justify-content: space-evenly; /* Evenly space out items vertically */
     padding: 20px; /* Add padding for better appearance */
     margin-bottom: 100px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
 }
 
 .container-login img {
     width: 70%;
+}
+
+.btn-forgot-password{
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-forgot-password:hover{
+    transform: scale(1.05);
 }
 
 .container-login {
@@ -18,8 +30,6 @@
     flex-direction: column;
     align-items: center;
 }
-
-
 
 body {
     display: flex;
