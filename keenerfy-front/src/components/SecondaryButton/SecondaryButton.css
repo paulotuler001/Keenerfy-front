@@ -1,5 +1,5 @@
 
-#secondaryButton{
+#secondary-button{
     background-color: #FFFF;
     color: #055973;
     border-radius: 10px;
@@ -8,4 +8,10 @@
     width: 178px;
     font-weight: 700;
     border: none;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+#secondary-button:hover{
+    transform: scale(1.05);
 }

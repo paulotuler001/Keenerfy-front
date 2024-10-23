@@ -1,8 +1,11 @@
+import { Link } from 'react-router-dom'
 import './SecondaryButton.css'
 
 const SecondaryButton = (props) => {
     return (
-            <button id="secondaryButton">{props.button}</button>
+           <Link to={props.button === "REGISTER" ? "/register" : "/login"}>
+            <button id="secondary-button">{props.button}</button>
+           </Link>
     )
 }
 
