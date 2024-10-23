@@ -1,4 +1,4 @@
-button{
+.btn{
     color: #FFFF;
     background-color: #055973;
     border-radius: 10px;
@@ -7,4 +7,15 @@ button{
     width: 120px;
     font-weight: 700;
     border: none;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+.btn:hover{
+    background-color: #055973;
+    transform: scale(1.05);
+    h2{
+        color: white;
+    }
 }
