@@ -2,7 +2,7 @@ import React from 'react';
 import './TextField.css'
 import InputMask from 'react-input-mask'
 
-const TextField = ({label, placeholder, value, onChange, type}) => {
+const TextField = ({label, placeholder, value, onChange, type, required}) => {
     return (
         <div className="form">
             <div className="text-field">
@@ -31,6 +31,7 @@ const TextField = ({label, placeholder, value, onChange, type}) => {
                     value={value}
                     onChange={onChange}
                     type={type ?? undefined}
+                    required={required}
                     />}
             </div>
         </div>

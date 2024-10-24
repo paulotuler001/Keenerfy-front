@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import api from "../api";
+import { jwtDecode } from "jwt-decode";
 // import { useNavigate } from "react-router-dom";
 
 const Context = createContext();
@@ -7,10 +8,13 @@ const Context = createContext();
 function AuthProvider({ children }){
 
     const [authenticated, setAuthenticated] = useState(false)
+    const [userName, setUserName ] = useState('')
 
     useEffect(() =>{
         const token = localStorage.getItem('token')
-
+    
+        const decoded = jwtDecode(token);
+        setUserName(decoded.unique_name)
         if(token){
             api.defaults.headers.Authorization = `${'Bearer ' + JSON.parse(token)}`
             setAuthenticated(true)
@@ -44,7 +48,7 @@ function AuthProvider({ children }){
     }
 
     return (
-        <Context.Provider value = {{authenticated, handleLogin, handleLogout}}>
+        <Context.Provider value = {{userName, authenticated, handleLogin, handleLogout}}>
             {children}
         </Context.Provider>
     )

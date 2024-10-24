@@ -22,7 +22,7 @@ const PurchaseOrder = () =>{
     return (
         <div>
             <Header/>
-            <ListTable title="PURCHASE ORDER" columns={columns} data={data}/>
+            <ListTable title="PURCHASE ORDER" columns={columns} data={data} headers={headers}/>
         </div>
     )
 }

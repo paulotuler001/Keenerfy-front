@@ -8,7 +8,7 @@ import { Context } from '../../Context/AuthContext';
 function Header(props) {
     
     const location = useLocation() 
-    const { handleLogout } = useContext(Context)
+    const { handleLogout, userName } = useContext(Context)
 
   return (
     <div className="container-header">
@@ -40,6 +40,11 @@ function Header(props) {
             path="/sales"
             isActive={location.pathname === "sales"}
           />
+          <ButtonHeader
+            name="PURCHASE ORDER"
+            path="/purchase-order"
+            isActive={location.pathname === "purchase-order"}
+          />
 
           <ButtonHeader
             name="STOCK"
@@ -51,7 +56,7 @@ function Header(props) {
         <div id="user-container">
           <div>
             <i className="fas fa-user"></i>
-            <p>{props.user ?? "disconnected"}</p>
+            <p>{userName ?? "disconnected"}</p>
           </div>
             <button id="sign-out-btn" onClick={handleLogout}><i className="fas fa-sign-out"></i></button>
         </div>

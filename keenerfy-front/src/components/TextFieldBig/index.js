@@ -6,7 +6,7 @@ const TextFieldBig = (props) => {
         <div className="form">
             <div className="text-field-big">
                 <label>{props.label}</label>
-                <input placeholder={props.placeholder}/>
+                <input required={true} placeholder={props.placeholder}/>
             </div>
         </div>
     )
