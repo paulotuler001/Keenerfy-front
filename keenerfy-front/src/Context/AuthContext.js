@@ -7,20 +7,17 @@ const Context = createContext();
 function AuthProvider({ children }){
 
     const [authenticated, setAuthenticated] = useState(false)
-    // const [, setLoading] = useState(true)
-    // const nav = useNavigate()
 
     useEffect(() =>{
         const token = localStorage.getItem('token')
 
         if(token){
-            api.defaults.headers.Authorization = JSON.parse(token)
+            api.defaults.headers.Authorization = `${'Bearer ' + JSON.parse(token)}`
             setAuthenticated(true)
         } else {
             setAuthenticated(false);
         }
         
-        // setLoading(false)
     }, [])
 
 
@@ -32,30 +29,17 @@ function AuthProvider({ children }){
         }
 
         const { data } = await api.post("/login/login", postLogin)
-            // .then(response => {
-            //     console.log(response.data);
-            // })
-            // .catch(error =>{
-            //     console.log(error);
-            // })
 
         const { token } = data
-        console.log(token);
-        
         localStorage.setItem('token', JSON.stringify(token))
+        // api.defaults.headers.Authorization = JSON.parse(token)
         api.defaults.headers.Authorization = token
         setAuthenticated(true)
-
-        // nav("/home")
-
-        console.log(authenticated);
-        
     }
     
     const handleLogout = () =>{
-        setAuthenticated(false)
-        localStorage.removeItem('token')
         api.defaults.headers.Authorization = undefined
+        localStorage.removeItem('token')
         setAuthenticated(false)
     }
 

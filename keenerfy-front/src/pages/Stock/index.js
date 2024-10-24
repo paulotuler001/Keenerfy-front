@@ -1,44 +1,31 @@
+import React, { useEffect, useState } from 'react';
 import ListTable from '../../components/ListTable'
 import Header from '../../components/Header'
 import './Stock.css'
+import api from '../../api';
 
 const Stock = () =>{
 
-    const columns = ['BARCODE', 'NAME', 'QUANTITY'];
-    const data = [
-        { BARCODE: '1', NAME: 'Item 1', QUANTITY: '10.99' },
-        { BARCODE: '2', NAME: 'Item 2', QUANTITY: '23.50' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-    ];
+    const columns = ['name', 'stock', 'price'];
+    const headers = [ 'NAME', 'QUANTITY', 'PRICE']
+    const [data, setData] = useState([])
+
+    const handleGetStock = async () =>{
+
+        const response = await api.get("/products");
+        setData(response.data)
+        console.log(response.data);
+        
+    }
+
+    useEffect(() => {
+        handleGetStock()
+    }, [])
 
     return (
         <div>
             <Header/>
-            <ListTable title="STOCK" columns={columns} data={data}/>
+            <ListTable title="STOCK" columns={columns} data={data} headers={headers}/>
         </div>
     )
 }

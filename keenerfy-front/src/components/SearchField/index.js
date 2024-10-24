@@ -1,3 +1,4 @@
+import React from 'react';
 import './SearchField.css'
 
 const SearchField = () =>{

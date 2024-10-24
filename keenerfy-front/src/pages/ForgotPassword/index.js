@@ -1,3 +1,4 @@
+import React from 'react';
 import './ForgotPassword.css'
 import TextField from '../../components/TextField'
 import Button from '../../components/Button'

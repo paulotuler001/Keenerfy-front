@@ -1,3 +1,4 @@
+import React from 'react';
 import { Route, Routes, Navigate, BrowserRouter } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -36,7 +37,7 @@ function AppRoutes() {
         {authenticated ? (
           <>
             <Route path="/home" element={<Home />} />
-            <Route path="/product-details" element={<ProductDetails />} />
+            <Route path="/product-details/:id" element={<ProductDetails />} />
             <Route path="/purchase-order" element={<PurchaseOrder />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/new-product" element={<NewProduct />} />

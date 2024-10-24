@@ -1,38 +1,24 @@
+import React, { useEffect, useState } from 'react';
 import Header from "../../components/Header";
 import ListTable from "../../components/ListTable";
+import api from '../../api';
 
 const PurchaseOrder = () =>{
-    const columns = ['BARCODE', 'NAME', 'QUANTITY'];
-    const data = [
-        { BARCODE: '1', NAME: 'Item 1', QUANTITY: '10.99' },
-        { BARCODE: '2', NAME: 'Item 2', QUANTITY: '23.50' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-        { BARCODE: '3', NAME: 'Item 3', QUANTITY: '99.99' },
-    ];
+    const columns = ['name', 'price', 'quantity'];
+    const headers = ['NAME', 'PRICE', 'QUANTITY']
 
+    const [data, setData] = useState([])
+
+    const handleGetPurchaseOrders = async () =>{
+
+        const response = await api.get("/purchase-order");
+        setData(response.data)
+        console.log(response.data);
+    }
+
+    useEffect(() => {
+        handleGetPurchaseOrders()
+    }, [])
     return (
         <div>
             <Header/>

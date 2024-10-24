@@ -2,7 +2,8 @@ import "./ListTable.css";
 import React from 'react';
 
 
-const ListTable = ({columns, data, title}) => {
+const ListTable = ({columns, data, title, headers}) => {
+console.log(data);
 
   return (
     <div className="container-list-table">
@@ -12,7 +13,7 @@ const ListTable = ({columns, data, title}) => {
         <div className="sub-container-list-table">
         </div>
         <div className="grid-container">
-        {columns.map((col, index) => (
+        {headers.map((col, index) => (
           <div key={index} className="grid-header">
             {col}
           </div>
