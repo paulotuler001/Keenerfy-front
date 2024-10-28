@@ -19,13 +19,17 @@ console.log(data);
           </div>
         ))}
       
-      {data.map((row, rowIndex) => (
-          columns.map((col, colIndex) => (
-            <div key={`${rowIndex}-${colIndex}`} className="grid-item">
-              {row[col]}
-            </div>
-          ))
-        ))}
+      {data ? 
+      data.map((row, rowIndex) => (
+        columns.map((col, colIndex) => (
+          <div key={`${rowIndex}-${colIndex}`} className="grid-item">
+            {row[col]}
+          </div>
+        ))
+      ))
+      : 
+      <div></div>
+    }
     </div>
       </form>
     </div>
