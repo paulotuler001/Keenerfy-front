@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import api from "../api";
 import { jwtDecode } from "jwt-decode";
+import Loading from "../components/Loading";
 // import { useNavigate } from "react-router-dom";
 
 const Context = createContext();
@@ -9,36 +10,61 @@ function AuthProvider({ children }){
 
     const [authenticated, setAuthenticated] = useState(false)
     const [userName, setUserName ] = useState('')
+    const [loading, setLoading] = useState(false)
+    const [token, setToken] = useState('')
 
     useEffect(() =>{
         const token = localStorage.getItem('token')
-    
-        const decoded = jwtDecode(token);
-        setUserName(decoded.unique_name)
+        setToken(token)
+        let decoded
+        
+        if(!token){
+            return
+        }
+        
         if(token){
-            api.defaults.headers.Authorization = `${'Bearer ' + JSON.parse(token)}`
+            decoded = jwtDecode(token);
+            setUserName(decoded.unique_name)
+            
+            api.defaults.headers.Authorization = `${'Bearer ' + token}`
             setAuthenticated(true)
+            setLoading(false)
         } else {
             setAuthenticated(false);
         }
         
     }, [])
 
-
     const handleLogin = async (login, password) =>{
 
+        setLoading(true)
+        const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+        await sleep(2000)
         const postLogin = {
             email: login,
             password: password
         }
+        let response
+        try {
+            response = await api.post("/login/login", postLogin)
+            if(response.status === 200){
+                const { token } = response.data
+                localStorage.setItem('token', token)
+                
+                if (token) {
+                    api.defaults.headers.Authorization = `Bearer ${token}`;
+                    setAuthenticated(true);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+        
+        setLoading(false)
+    }
 
-        const { data } = await api.post("/login/login", postLogin)
-
-        const { token } = data
-        localStorage.setItem('token', JSON.stringify(token))
-        // api.defaults.headers.Authorization = JSON.parse(token)
-        api.defaults.headers.Authorization = token
-        setAuthenticated(true)
+    if(loading){
+        return <Loading/>
     }
     
     const handleLogout = () =>{
@@ -48,7 +74,7 @@ function AuthProvider({ children }){
     }
 
     return (
-        <Context.Provider value = {{userName, authenticated, handleLogin, handleLogout}}>
+        <Context.Provider value = {{token, userName, authenticated, handleLogin, handleLogout}}>
             {children}
         </Context.Provider>
     )
