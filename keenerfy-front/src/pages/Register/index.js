@@ -4,7 +4,8 @@ import TextField from '../../components/TextField'
 import Button from '../../components/Button'
 import SecondaryButton from '../../components/SecondaryButton'
 import { useState } from 'react'
-import axios from 'axios'
+import api from '../../api';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () =>{
 
@@ -13,10 +14,11 @@ const Register = () =>{
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [cpf, setCpf] = useState('')
-    const handleSubmit = (e) => {
+    const nav = useNavigate()
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
-        // Dados que você quer enviar
         const postData = {
             username: name + " " + lastname,
             email: email,
@@ -24,14 +26,15 @@ const Register = () =>{
             cpf: cpf
         };
 
-        // Fazendo uma requisição POST
-        axios.post('http://localhost:5006/register/register', postData)
+        await api.post('/register/register', postData)
             .then(response => {
                 console.log(response.data);
             })
             .catch(error =>{
                 console.log(error);
             })
+
+        nav('/login')
     };
 
     const handleCPFChange = (e) => {
@@ -63,7 +66,7 @@ const Register = () =>{
                     <TextField 
                         label="CPF" 
                         placeholder="Digite seu CPF"
-                        value={cpf} // O valor atual do CPF
+                        value={cpf} 
                         onChange={handleCPFChange}
                         type='text'
                     />
@@ -95,7 +98,7 @@ const Register = () =>{
                     />
                     </div>
                     <div id="sub-container-button">
-                        <Button button="REGISTER"/>
+                        <Button type="submit" button="REGISTER"/>
                         <SecondaryButton button="ALREADY CREATED?"/>
                     </div>
                 </form>
