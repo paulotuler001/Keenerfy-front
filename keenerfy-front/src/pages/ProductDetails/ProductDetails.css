@@ -6,11 +6,12 @@
     justify-content: space-evenly;
 }
 
-#product-detail-block div{
+#product-detail-block>div{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-left: 50px;
+    justify-content: space-around;
+    margin-left: 0px;
+    width: 80%;
 }
 
 .form-product-detail{
@@ -34,4 +35,13 @@
     width: 70%;
     margin-bottom: 60px;
 }
+
+#edit-button{
+    display: flex;
+    width: 100%;
+    height: 7%;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
 
