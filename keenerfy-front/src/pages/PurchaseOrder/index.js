@@ -11,9 +11,13 @@ const PurchaseOrder = () =>{
 
     const handleGetPurchaseOrders = async () =>{
 
-        const response = await api.get("/purchase-order");
-        setData(response.data)
-        console.log(response.data);
+        try {
+            const response = await api.get("/purchase-order");
+            setData(response.data)
+            console.log(response.data);
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     useEffect(() => {

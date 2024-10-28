@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Card from "../../components/Card"
 import Header from "../../components/Header"
 import SearchField from "../../components/SearchField"
 import './Home.css'
 import api from '../../api';
+import { Context } from '../../Context/AuthContext';
 
 const Home = () =>{
 
     const [product, setProduct] = useState([])
 
-    /**?{
-        id: 0,
-        code: "",
-        name: "",
-        description: "",
-        price: 0.0,
-        link: ""
-    } */
-
     const handleGetProducts = async () =>{
-        const response = await api.get("/products")
-        setProduct(response.data)
-        console.log(response.data);
+
+        await api.get("/products")
+        .then(resp =>{
+            console.log(resp.data);
+            setProduct(resp.data)
+        })
+        .catch(err =>{
+            console.log(err);
+        })
     }
 
     useEffect(() =>{

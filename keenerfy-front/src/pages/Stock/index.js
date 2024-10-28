@@ -12,9 +12,13 @@ const Stock = () =>{
 
     const handleGetStock = async () =>{
 
-        const response = await api.get("/products");
-        setData(response.data)
-        console.log(response.data);
+        try {
+            const response = await api.get("/products");
+            setData(response.data)
+            console.log(response.data);            
+        } catch (error) {
+            console.log(error);
+        }
         
     }
 

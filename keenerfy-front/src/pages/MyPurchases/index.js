@@ -16,12 +16,17 @@ const MyPurchases = () => {
         let token = localStorage.getItem('token')
     
         const decoded = jwtDecode(token);
-        let userId = decoded.userid
+        let userId = decoded.nameid
         console.log(userId);
         
-        const response = await api.get(`/sales/${userId}`);
-        console.log(response.data);
-        setData(response.data)
+        await api.get(`/sales/${userId}`)
+        .then(resp =>{
+            console.log(resp.data);
+            setData(resp.data)
+        })
+        .catch(err =>{
+            console.log(err);
+        })
     }
 
     useEffect(() => {
@@ -31,7 +36,7 @@ const MyPurchases = () => {
 return (
     <div>
         <Header/>
-        <ListTable title="MY PURCHASES" columns={columns} data={data}/>
+        <ListTable title="MY PURCHASES" columns={columns} data={data} headers={headers}/>
     </div>
 )
 }

@@ -1,26 +1,45 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Button from "../../components/Button"
 import Header from "../../components/Header"
 import './ProductDetails.css'
 import { useParams } from 'react-router-dom';
 import api from '../../api';
+import { Context } from '../../Context/AuthContext';
+import { jwtDecode } from 'jwt-decode';
 
 const ProductDetails = (props) =>{
 
     const { id } = useParams();
     const [details, setDetails] = useState([])
+    const { token } = useContext(Context)
     
+    const handleBuy = async () =>{
+        const postData = {
+            ProductCode:details.code,
+            quantity: 1
+        }
+
+        const decoded = jwtDecode(token)
+        const userId = decoded.nameid
+
+        try {
+            await api.post(`/sales/${userId}`, postData)            
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     useEffect(() => {
-        const fetchDetails = async () => {
+        const getDetails = async () => {
           try {
             const response = await api.get(`/products/by-code/${id}`);
             setDetails(response.data); 
           } catch (error) {
-            console.error('Erro ao buscar detalhes:', error);
+            console.error(error);
           }
         };
     
-        fetchDetails();
+        getDetails();
       }, [id]);
 
     return (
@@ -38,7 +57,7 @@ const ProductDetails = (props) =>{
                     <div>
                         <h1>R${details.price}</h1>
                         <p>{details.description}</p>
-                        <Button button="BUY"/>
+                        <Button button="BUY" onClick={handleBuy}/>
                     </div>
                 </div>
             </form>
