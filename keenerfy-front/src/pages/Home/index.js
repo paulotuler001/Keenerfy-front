@@ -8,7 +8,8 @@ import { Context } from '../../Context/AuthContext';
 
 const Home = () =>{
 
-    const [product, setProduct] = useState([])
+    let [product, setProduct] = useState([])
+    const [search, setSearch] = useState('')
 
     const handleGetProducts = async () =>{
 
@@ -22,6 +23,14 @@ const Home = () =>{
         })
     }
 
+    const handleSearch = (e) =>{
+        setSearch(e)
+    }
+
+    product = product.filter((prod) =>
+        prod.name.toLowerCase().includes(search.toLowerCase())
+      );
+
     useEffect(() =>{
         handleGetProducts()
     }, [])
@@ -31,7 +40,7 @@ const Home = () =>{
             <Header/>
             <div id="container-list-card">
                 <div>
-                    <SearchField/>
+                    <SearchField value={search} onChange={e=> handleSearch(e.target.value)}/>
                 </div>
                 <section id="list-cards">
                     {product.map(prod => {

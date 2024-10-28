@@ -1,10 +1,10 @@
 import React from 'react';
 import './SearchField.css'
 
-const SearchField = () =>{
+const SearchField = (props) =>{
     return (
         <div className='container-search-field'>
-            <input placeholder='Search...'/>
+            <input placeholder='Search...' value={props.value} onChange={props.onChange}/>
                 <i className="fas fa-search"></i>
         </div>
     )
