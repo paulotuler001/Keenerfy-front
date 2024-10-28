@@ -2,7 +2,6 @@ import React, { createContext, useEffect, useState } from "react";
 import api from "../api";
 import { jwtDecode } from "jwt-decode";
 import Loading from "../components/Loading";
-// import { useNavigate } from "react-router-dom";
 
 const Context = createContext();
 
@@ -50,6 +49,9 @@ function AuthProvider({ children }){
             if(response.status === 200){
                 const { token } = response.data
                 localStorage.setItem('token', token)
+                
+                const decoded = jwtDecode(token);
+                setUserName(decoded.unique_name)
                 
                 if (token) {
                     api.defaults.headers.Authorization = `Bearer ${token}`;
