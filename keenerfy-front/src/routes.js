@@ -12,15 +12,14 @@ import MyPurchases from "./pages/MyPurchases";
 import ForgotPassword from "./pages/ForgotPassword";
 import { Context } from "./Context/AuthContext";
 import { useContext } from "react";
+import EditProduct from './pages/EditProduct';
 
 function AppRoutes() {
   let {authenticated} = useContext(Context);
-  // authenticated = true
-  console.log(authenticated + "aaa");
+  
   return (
     <BrowserRouter>
       <Routes>
-        {/* Rotas públicas */}
         {authenticated ? (
           <>
             <Route path="/login" element={<Navigate to="/home" replace />} />
@@ -33,11 +32,11 @@ function AppRoutes() {
           </>
         )}
 
-        {/* Rotas privadas */}
         {authenticated ? (
           <>
             <Route path="/home" element={<Home />} />
             <Route path="/product-details/:id" element={<ProductDetails />} />
+            <Route path="/edit-product/:id" element={<EditProduct />} />
             <Route path="/purchase-order" element={<PurchaseOrder />} />
             <Route path="/sales" element={<Sales />} />
             <Route path="/new-product" element={<NewProduct />} />
