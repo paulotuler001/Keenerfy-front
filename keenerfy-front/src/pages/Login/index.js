@@ -38,7 +38,7 @@ const Login = () =>{
                     onChange={e => setPassword(e.target.value)}
                     />
                     <Link to={"/forgot-password"}>
-                        <button className='btn-forgot-password'><h3>Forgot your password?</h3></button>
+                        <button className='btn-forgot-password'><h3></h3></button>
                     </Link>
                     <Button button="ENTER"/>
                     <SecondaryButton button="REGISTER"/>
