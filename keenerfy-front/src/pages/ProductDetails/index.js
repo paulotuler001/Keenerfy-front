@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import Button from "../../components/Button"
 import Header from "../../components/Header"
 import './ProductDetails.css'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../api';
 import { Context } from '../../Context/AuthContext';
 import { jwtDecode } from 'jwt-decode';
@@ -12,6 +12,7 @@ const ProductDetails = (props) =>{
     const { id } = useParams();
     const [details, setDetails] = useState([])
     const { token } = useContext(Context)
+    const nav = useNavigate()
     
     const handleBuy = async () =>{
         const postData = {
@@ -27,6 +28,10 @@ const ProductDetails = (props) =>{
         } catch (error) {
             console.log(error);
         }
+    }
+
+    const handleEdit = () =>{
+        nav(`/edit-product/${details.code}`)
     }
 
     useEffect(() => {
@@ -57,7 +62,10 @@ const ProductDetails = (props) =>{
                     <div>
                         <h1>R${details.price}</h1>
                         <p>{details.description}</p>
-                        <Button button="BUY" onClick={handleBuy}/>
+                        <div id='edit-button'>
+                            <Button button="BUY" onClick={handleBuy}/>
+                            <Button button="EDIT" onClick={handleEdit}></Button>
+                        </div>
                     </div>
                 </div>
             </form>
