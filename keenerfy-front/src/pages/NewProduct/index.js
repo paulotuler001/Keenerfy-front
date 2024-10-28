@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from "../../components/Header";
 import { jwtDecode } from "jwt-decode";
 import "./NewProduct.css";
@@ -7,6 +7,7 @@ import TextFieldBig from "../../components/TextFieldBig";
 import Button from "../../components/Button";
 import { useState } from "react";
 import api from "../../api";
+import { Context } from '../../Context/AuthContext';
 
 const NewProduct = () => {
   const [barcode, setBarcode] = useState("");
@@ -14,27 +15,32 @@ const NewProduct = () => {
   const [price, setPrice] = useState(0.0);
   const [quantity, setQuantity] = useState(0);
   const [link, setLink] = useState("");
+  const [description, setDescription] = useState("");
+  const { token } = useContext(Context)
 
   const handleUpload = async (e) => {
 
     const postData = {
-      code: barcode,
-      price,
-      quantity,
       name,
-      link: link,
+      code: barcode,
+      description,
+      price,
+      link,
+      stock:quantity
     };
-
-    let token = localStorage.getItem('token')
     
     const decoded = jwtDecode(token);
-    let userId = decoded.userid
-    
     console.log(decoded);
 
-    const response = await api.post(`/products/${userId}`, postData);
 
-    console.log(response.data);
+    let userId = decoded.nameid
+    try {
+      await api.post(`/products/${userId}`, postData);
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log(userId);
     
   };
 
@@ -81,7 +87,13 @@ const NewProduct = () => {
           </div>
         </div>
         <div id="second-block-text-field">
-          <TextFieldBig label="DESCRIPTION" required={true} placeholder={"ex: Nice flip flop to get rid of your old ones"}/>
+          <TextFieldBig 
+          label="DESCRIPTION" 
+          required={true} 
+          placeholder={"ex: Nice flip flop to get rid of your old ones"}
+          value={description}
+          onChange={(e)=> setDescription(e.target.value)}
+          />
         </div>
         <div id="third-block-photo-field">
           <div id="form-new-product">
