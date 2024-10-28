@@ -106,4 +106,12 @@
     background-color: #055973;
     color: white;
     border-radius: 10px;
+    box-shadow: 5px 5px 5px 0px rgba(0,0,0,0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
+#button-upload:hover{
+    background-color: #055973;
+    transform: scale(1.05);
 }
