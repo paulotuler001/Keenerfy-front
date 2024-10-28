@@ -20,36 +20,36 @@ function Header(props) {
           <ButtonHeader
             name="HOME"
             path="/home"
-            isActive={location.pathname === "home"}
+            isActive={location.pathname === "/home"}
           />
 
           <ButtonHeader
             name="MY PURCHASES"
             path="/my-purchases"
-            isActive={location.pathname === "my-purchases"}
+            isActive={location.pathname === "/my-purchases"}
           />
 
           <ButtonHeader
             name="NEW PRODUCT"
             path="/new-product"
-            isActive={location.pathname === "new-product"}
+            isActive={location.pathname === "/new-product"}
           />
 
           <ButtonHeader
             name="SALES"
             path="/sales"
-            isActive={location.pathname === "sales"}
+            isActive={location.pathname === "/sales"}
           />
           <ButtonHeader
             name="PURCHASE ORDER"
             path="/purchase-order"
-            isActive={location.pathname === "purchase-order"}
+            isActive={location.pathname === "/purchase-order"}
           />
 
           <ButtonHeader
             name="STOCK"
             path="/stock"
-            isActive={location.pathname === "stock"}
+            isActive={location.pathname === "/stock"}
           />
 
         </div>
