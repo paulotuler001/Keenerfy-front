@@ -15,7 +15,7 @@ const Home = () =>{
 
         await api.get("/products")
         .then(resp =>{
-            console.log(resp.data);
+            console.log(resp.dta);
             setProduct(resp.data)
         })
         .catch(err =>{
@@ -43,7 +43,8 @@ const Home = () =>{
                     <SearchField value={search} onChange={e=> handleSearch(e.target.value)}/>
                 </div>
                 <section id="list-cards">
-                    {product.map(prod => {
+                    {product && product.length > 0 ?                     
+                    product.map(prod => {
                         return <Card
                                 key={prod.id}
                                 title={prod.name}
@@ -52,8 +53,10 @@ const Home = () =>{
                                 price={prod.price}
                                 code={prod.code}
                                 />
-                    })}
-                    
+                    })
+                    :
+                    <h1 id='no-results'>0 results shown</h1>
+                }
                 </section>
             </div>
         </div>
