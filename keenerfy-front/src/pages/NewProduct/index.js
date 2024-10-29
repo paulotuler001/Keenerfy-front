@@ -74,6 +74,7 @@ const NewProduct = () => {
               label="NAME"
               required={true}
               value={name}
+              maxlength='21'
               placeholder={"ex:Kenner VIP DELUXE"}
               onChange={(e) => setName(e.target.value)}
             />

@@ -32,8 +32,6 @@ const EditProduct = () => {
       stock:quantity
     };
     
-    const decoded = jwtDecode(token);
-
     try {
       await api.put(`/products`, putData);
     } catch (error) {
@@ -90,6 +88,7 @@ const EditProduct = () => {
             <TextField
               label="NAME"
               required={true}
+              maxlength='21'
               value={name}
               placeholder={"ex:Kenner VIP DELUXE"}
               onChange={(e) => setName(e.target.value)}
