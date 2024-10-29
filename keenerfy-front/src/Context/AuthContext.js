@@ -11,6 +11,7 @@ function AuthProvider({ children }){
     const [userName, setUserName ] = useState('')
     const [loading, setLoading] = useState(false)
     const [token, setToken] = useState('')
+    const [error, setError] = useState('')
 
     useEffect(() =>{
         const token = localStorage.getItem('token')
@@ -60,6 +61,7 @@ function AuthProvider({ children }){
             }
         } catch (error) {
             console.log(error);
+            setError("Invalid username or password")
         }
         
         setLoading(false)
@@ -76,7 +78,7 @@ function AuthProvider({ children }){
     }
 
     return (
-        <Context.Provider value = {{token, userName, authenticated, handleLogin, handleLogout}}>
+        <Context.Provider value = {{setError, error, token, userName, authenticated, handleLogin, handleLogout}}>
             {children}
         </Context.Provider>
     )

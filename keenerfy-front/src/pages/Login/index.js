@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Login.css'
 import TextField from '../../components/TextField'
 import Button from '../../components/Button'
@@ -6,21 +6,34 @@ import SecondaryButton from '../../components/SecondaryButton'
 import { Link } from 'react-router-dom'
 import { useContext, useState } from 'react'
 import { Context } from '../../Context/AuthContext'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () =>{
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     
-    const { handleLogin } = useContext(Context)
+    const { handleLogin, error, setError } = useContext(Context)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        handleLogin(login, password);
+        const response = handleLogin(login, password);
+        if(response){
+            toast.error(response.error)
+        }
       };
+    useEffect(()=>{
+        if(error === 'Invalid username or password'){
+            notify()
+            setError('')
+        }
+    }, [])
+      const notify = () => toast.error("Invalid username or password");
 
     return (
         <div className="container-login">
+            <ToastContainer/>
                 <img src="/images/keener.fy-big.svg" alt="Principal"/>
                 <form onSubmit={handleSubmit}>
                     <TextField 

@@ -6,6 +6,7 @@ import SecondaryButton from '../../components/SecondaryButton'
 import { useState } from 'react'
 import api from '../../api';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 const Register = () =>{
 
@@ -13,6 +14,7 @@ const Register = () =>{
     const [lastname, setLastname] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [repeatedPassword, setRepeatedPassword] = useState('')
     const [cpf, setCpf] = useState('')
     const nav = useNavigate()
 
@@ -26,16 +28,25 @@ const Register = () =>{
             cpf: cpf
         };
 
-        await api.post('/register/register', postData)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error =>{
-                console.log(error);
-            })
+        if(password !== repeatedPassword){
+            notifyPassError()
+        }else{
+            await api.post('/register/register', postData)
+                .then(response => {
+                    console.log(response.data);
+                    nav('/login')
+                })
+                .catch(error =>{
+                    notifyEmailAlreadyExists()
+                })
+        }
 
-        nav('/login')
+
+        
     };
+
+    const notifyPassError = () => { toast.error("The password needs to be the same as the repeated password")}
+    const notifyEmailAlreadyExists = () => { toast.error("This email already exists in our database")}
 
     const handleCPFChange = (e) => {
         setCpf(e.target.value);
@@ -43,6 +54,7 @@ const Register = () =>{
 
     return (
             <div className="container-register">
+                <ToastContainer/>
                 <img src="/images/keener.fy-big.svg" alt="Principal"/>
                 <form onSubmit={handleSubmit}>
                     <div className="sub-container">
@@ -92,9 +104,9 @@ const Register = () =>{
                     <TextField 
                     label="REPEAT YOUR PASSWORD" 
                     placeholder="************"
-                    value={password} 
+                    value={repeatedPassword} 
                     type='password'
-                    onChange={e => setPassword(e.target.value)}
+                    onChange={e => setRepeatedPassword(e.target.value)}
                     />
                     </div>
                     <div id="sub-container-button">
